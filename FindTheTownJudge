@@ -1,0 +1,22 @@
+class Solution {
+    public int findJudge(int N, int[][] trust) {
+        if(trust.length==0)return N;
+        int max = Integer.MIN_VALUE;
+        int judge = 0;
+        int[] dup = new int[N+1];
+        for(int i=0; i<trust.length; i++){
+            dup[trust[i][1]]++;
+            if(max<dup[trust[i][1]]){
+                max = dup[trust[i][1]];
+                judge = trust[i][1];
+                System.out.println(judge);
+            }
+        }
+        for(int i=0; i<trust.length; i++){
+            if(trust[i][0]==judge){
+                return -1;
+            }
+        }
+        return max==(N-1)?judge:-1;
+    }
+}
