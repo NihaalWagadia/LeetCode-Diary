@@ -1,0 +1,28 @@
+class StockSpanner {
+    List<Integer>ll = new ArrayList<>();
+    public StockSpanner() {
+        
+    }
+    
+    public int next(int price) {
+        ll.add(price);
+        int max = 1;
+        if(ll.size()==1)return 1;
+        int com =ll.get(ll.size()-1);
+        for(int i=ll.size()-2; i>=0; i--){
+            if(ll.get(i)<=com){
+                max++;
+            }
+            else{
+                break;
+            }
+        }
+        return max;
+    }
+}
+
+/**
+ * Your StockSpanner object will be instantiated and called as such:
+ * StockSpanner obj = new StockSpanner();
+ * int param_1 = obj.next(price);
+ */
