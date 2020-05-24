@@ -1,0 +1,40 @@
+// "static void main" must be defined in a public class.
+public class Main {
+    public static void main(String[] args) {
+        int[] nums1 = {1, 10, 25, 35, 60};
+	int target1 = 90;
+	System.out.println(Arrays.toString(Find2Sum(nums1, target1-30)));
+	int[] nums2 = {20, 50, 40, 25, 30, 10};
+	int target2 = 90;
+	System.out.println(Arrays.toString(Find2Sum(nums2, target2-30)));
+	int[] nums3 = {50, 20, 10, 40, 25, 30};
+	int target3 = 90;
+	System.out.println(Arrays.toString(Find2Sum(nums3, target3-30)));
+	int[] nums4 = {1, 2};
+	int target4 = 90;
+	System.out.println(Arrays.toString(Find2Sum(nums4, target4-30)));
+    }
+    
+    public static int[] Find2Sum(int[]num, int target){
+        Map<Integer,Integer>hm = new HashMap<>();
+        int []arr = new int[2];
+        int maxi = -1;
+        for(int i=0; i<num.length; i++){
+            if(hm.containsKey(target-num[i])){
+                int x = num[i];
+                int y = target-num[i];
+                if(maxi<x || maxi<y){
+                    maxi=x>y?x:y;
+                arr[1]=i;
+                arr[0]=hm.get(target-num[i]);
+                }
+            }
+            else
+            {
+                hm.put(num[i], i);
+            }
+        }
+    
+        return arr;
+}
+}
