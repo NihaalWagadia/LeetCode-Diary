@@ -1,0 +1,47 @@
+class Solution {
+    int incre =1;
+    public int[][] generateMatrix(int n) {
+        int[][] spiral = new int[n][n];
+  
+        int rowbegin=0, colbegin=0, rowEnd=n-1, colEnd=n-1;
+        int lasrRowStart=0;
+        while(incre<=n*n){
+            int row =0;
+            int col =0;
+            
+            for(col=colbegin; col<=colEnd; col++){
+                spiral[rowbegin][col]=incre;
+                incre++;
+            
+            }
+            rowbegin++;
+             
+            
+           for(row=rowbegin; row<=rowEnd; row++){
+               spiral[row][colEnd]=incre;
+               incre++;
+            
+           }
+            colEnd--;
+        
+            
+            for(col=colEnd; col>=colbegin; col--){
+              spiral[rowEnd][col]=incre;
+              incre++;
+            
+          }
+            rowEnd--;
+            
+            for(row=rowEnd; row>=rowbegin; row--){
+                spiral[row][colbegin]=incre;
+                incre++;
+            
+            }
+            colbegin++;
+            
+        }
+        return spiral;
+    }
+    
+
+}
