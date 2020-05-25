@@ -1,0 +1,17 @@
+class Solution {
+    int max_count = 0;
+    public int maxUncrossedLines(int[] A, int[] B) {
+        int len_A = A.length;
+        int len_B = B.length;
+        int[][]matrix = new int[len_A+1][len_B+1];
+        
+        for(int i=1; i<len_A+1; i++){
+            for(int j=1; j<len_B+1; j++){
+                matrix[i][j]=A[i-1]==B[j-1]?1+matrix[i-1][j-1]:Math.max(matrix[i][j-1],matrix[i-1][j]);
+            }
+        }
+        return matrix[len_A][len_B];
+    }
+    
+  
+}subs
