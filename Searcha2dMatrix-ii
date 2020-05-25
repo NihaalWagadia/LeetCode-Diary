@@ -1,0 +1,26 @@
+class Solution {
+    boolean found = false;
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int i=0, j=0;
+      //  System.out.println(matrix.length+" "+ matrix[0].length);
+    dfs(matrix, i, j, target);
+    return found;
+    }
+    
+    public void dfs(int matrix[][], int i, int j, int target){
+        if(i<0 || j<0 || i>=matrix.length || j>=matrix[0].length || matrix[i][j]>target || 
+           matrix[i][j]==-2000){
+            return;
+        }
+        if(matrix[i][j]==target){
+            found =true;
+            return ;
+        }
+        matrix[i][j]=-2000;
+        dfs(matrix, i+1, j, target);
+        dfs(matrix, i-1, j, target);
+        dfs(matrix, i, j+1, target);
+        dfs(matrix, i, j-1, target);
+        return;
+    }
+}
