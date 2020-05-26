@@ -1,0 +1,43 @@
+class LRUCache {
+    Map<Integer,Integer>hm = new LinkedHashMap<>();
+    Queue<Integer>queue = new LinkedList<>();
+    int cap;
+    public LRUCache(int capacity) {
+        cap = capacity;
+    }
+    
+    public int get(int key) {
+       if(!hm.containsKey(key))return -1;
+        int val = hm.get(key);
+        hm.remove(key);
+        hm.put(key,val);
+        return val;
+    }
+    
+    public void put(int key, int value) {
+        if(cap==hm.size() && !hm.containsKey(key)){
+            int k =-1;
+            for(Map.Entry<Integer, Integer>entry:hm.entrySet()){
+                k = entry.getKey();
+                break;
+            }
+            hm.remove(k);
+            hm.put(key, value);
+        }
+        else if(hm.containsKey(key)){ 
+            hm.remove(key);
+            hm.put(key,value);
+        }
+        else{
+        hm.put(key, value);
+        }
+        }
+    }
+
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.get(key);
+ * obj.put(key,value);
+ */
