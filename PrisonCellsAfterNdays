@@ -1,0 +1,20 @@
+class Solution {
+    public int[] prisonAfterNDays(int[] cells, int N) {
+
+        int loop = N%14==0?14:N%14;
+
+        for(int i=0; i<loop; i++){
+            int[] pattern1 = new int[cells.length];
+            for(int j=1; j<cells.length-1; j++){
+                if(cells[j-1]==cells[j+1]){
+                    pattern1[j]=1;
+                }
+                else{
+                    pattern1[j]=0;
+                }
+            }
+            cells=pattern1;
+        }
+        return cells;
+    }
+}
