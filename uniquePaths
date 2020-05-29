@@ -1,3 +1,6 @@
+Breaker:- Number of ways you can reach each cell
+
+
 class Solution {
     public int uniquePaths(int m, int n) {
         int[][] trace = new int[n][m];
