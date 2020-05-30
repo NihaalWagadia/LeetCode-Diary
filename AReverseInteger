@@ -1,0 +1,26 @@
+class Solution {
+    public int reverse(int x) {
+        long n=1;
+        if(x<0){
+            n = n*(-1)*x;
+        }
+        else{
+            n=x;
+        }
+        String str = String.valueOf(n);
+        char[] ch = str.toCharArray();
+        for(int i=0, j=ch.length-1; i<ch.length/2; i++){
+            char temp = ch[j];
+            ch[j]=ch[i];
+            ch[i]=temp;
+            j--;
+        }
+        String sb = "";
+        for(int i=0; i<ch.length; i++){
+            sb += ch[i];
+        }
+        long x1 = Long.valueOf(sb);
+        if(x1>Integer.MAX_VALUE || x1<Integer.MIN_VALUE)return 0;
+        return x<0? ((int)(-1)*(int)x1):(int)x1;
+    }
+}
