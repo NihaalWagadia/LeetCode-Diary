@@ -1,0 +1,21 @@
+class Solution {
+    public int twoSumLessThanK(int[] A, int K) {
+        Arrays.sort(A);
+        int i=0, j=A.length-1;
+        int sum=-1;
+        while(i<j){
+            int add = A[i]+A[j];
+            if(add>K){
+                j--;
+            }
+            else if(add<K){
+                sum = Math.max(sum, add);
+                i++;
+            }
+            else{
+                j--;
+            }
+        }
+        return sum;
+    }
+}
