@@ -1,0 +1,23 @@
+class Solution {
+    public int countCharacters(String[] words, String chars) {
+        int[] count_char = new int[26];
+        int out =0;
+        for(int i=0; i<chars.length(); i++){
+            count_char[chars.charAt(i)-'a']++;
+        }
+        for(String word:words){
+            int[] word_count = Arrays.copyOf(count_char, count_char.length);
+            int incr=0;
+            for(int i=0; i<word.length(); i++){
+                word_count[word.charAt(i)-'a']--;
+                if(word_count[word.charAt(i)-'a'] >=0){
+                    incr++;
+                }
+            }
+            if(incr==word.length()){
+                out += incr ;
+            }
+        }
+        return out;
+    }
+}
