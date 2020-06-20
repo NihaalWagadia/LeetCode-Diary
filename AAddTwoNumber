@@ -1,0 +1,93 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        int carry =0;
+        ListNode output = new ListNode(0);
+        ListNode copy = output;
+        Queue<Integer>st = new LinkedList<>();
+        while(l1 != null && l2 != null){
+            int x=l1.val;
+            int y=l2.val;
+            int add = x+y+carry;
+            if(add>9){
+                carry=1;
+                st.add(add-10);
+                l1 = l1.next;
+                l2=l2.next;
+            }
+            
+            else if(add<10){
+                    carry=0;
+                    st.add(add);
+                    l1 = l1.next;
+                    l2 = l2.next;
+                }
+                
+            }
+        
+        while(l1!=null){
+            if(carry==1){
+                int x = l1.val+carry;
+                if(x>9){
+                    carry=1;
+                    st.add(x-10);
+                    l1= l1.next;
+                }
+                else{
+                    carry =0;
+                    st.add(x);
+                    l1=l1.next;
+                }
+            }
+            else{
+                carry=0;
+                st.add(l1.val);
+                l1=l1.next;
+            }
+            
+        }
+        
+        while(l2!=null){
+            if(carry==1){
+                int x = l2.val+carry;
+                if(x>9){
+                    carry=1;
+                    st.add(x-10);
+                    l2= l2.next;
+                }
+                else{
+                    carry =0;
+                    st.add(x);
+                    l2=l2.next;
+                }
+            }
+            else{
+                carry=0;
+                st.add(l2.val);
+                l2=l2.next;
+            }
+            
+        }
+        
+        if(carry>0){
+            st.add(1);
+        }
+        
+        while(!st.isEmpty()){
+            copy.next = new ListNode(st.poll());
+           copy = copy.next;
+            
+        }
+        
+        return output.next;
+    }
+}
