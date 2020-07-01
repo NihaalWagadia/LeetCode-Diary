@@ -1,0 +1,16 @@
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String, List<String>>hm = new HashMap<>();
+        for(int i=0; i< strs.length; i++){
+            String str = strs[i];
+            char[] c = str.toCharArray();
+            Arrays.sort(c);
+            String sort = new String(c);
+            if(!hm.containsKey(sort)){
+            hm.put(sort, new ArrayList<>());    
+            }
+            hm.get(sort).add(str);
+        }
+        return new ArrayList(hm.values());
+    }
+}
