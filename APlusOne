@@ -1,54 +1,22 @@
 class Solution {
     public int[] plusOne(int[] digits) {
-        int carry = 0;
-        String str = "";
-        int i = digits.length-1;
-        int last= digits.length-1;
-        
+        int i = digits.length-1, carry =0;
+        int[] newDigits = new int[digits.length+1];
         while(i>=0){
-            if(digits[i]==9 && carry!=0){
-                carry=1;
-                str += "0";
-                i--;
+            if(digits[i]==9){
+                digits[i]=0;
+                carry = 1;
             }
-        
-            else if (i==last)
-            {
-                if(digits[i]==9)
-                {
-                    carry=1;
-                str += "0";
-                i--;
+            else{
+                digits[i]=digits[i]+1;
+                return digits;
             }
-                else if(digits[i]<9)
-                {
-                str += String.valueOf(digits[i]+1);
-                i--;
-            }
-                      }
-            
-            else if(carry==1){
-                str += String.valueOf(digits[i]+1);
-                carry=0;
-                i--;
-            }
-           
-            
-            else {
-                str += String.valueOf(digits[i]);
-                i--;
-            }
+            i--;
         }
-        
         if(carry==1){
-            str+= "1";
+            
+            newDigits[0]=1;
         }
-        int[]arr = new int[str.length()];
-        int s =0;
-        for(int j=arr.length-1; j>=0; j--){
-            arr[s]=Character.getNumericValue(str.charAt(j));
-            s++;
-        }
-        return arr;   
+        return newDigits;
     }
 }
