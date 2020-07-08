@@ -17,7 +17,7 @@ class Solution {
     public void flatten(TreeNode root) {
         Stack<TreeNode>st = new Stack<>();
         st.push(root);
-        
+       
         while(!st.isEmpty() && root!=null){
             TreeNode tn = st.pop();
             if(tn.right!=null){
