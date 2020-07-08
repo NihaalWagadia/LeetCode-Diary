@@ -24,7 +24,7 @@ class Solution {
                     return true;
                 }
             }
-            
+           
             if(tn.left!=null){
                 tn.left.val = tn.left.val+tn.val;
                 st.push(tn.left);
