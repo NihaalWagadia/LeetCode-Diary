@@ -1,0 +1,22 @@
+class Solution {
+    public boolean isHappy(int n) {
+        List<Integer>set = new ArrayList<>();
+        int sum =0;
+        while(n!=1){
+            while(n>0){
+                int rem = n%10;
+                sum += rem*rem;
+                n /= 10;
+            }
+            if(!set.contains(sum)){
+                n=sum;
+                set.add(sum);
+                sum=0;
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
+    }
+}
