@@ -10,7 +10,7 @@ class Solution {
             float x = coordinates[i][0]-coordinates[0][0];
             float y = coordinates[i][1]-coordinates[0][1];
             float currDif= y/x;
-    
+   
             if(currDif!=dif)
             {
                 return false;
