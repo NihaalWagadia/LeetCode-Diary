@@ -1,0 +1,24 @@
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        int start[] = new int [intervals.length];
+        int end[]= new int[intervals.length];
+        for(int i=0; i<intervals.length; i++){
+            start[i]=intervals[i][0];
+            end[i]= intervals[i][1];
+        }
+        Arrays.sort(start);
+        Arrays.sort(end);
+        int startInd=0, endInd=0;
+        ArrayList<int[]>arr=new ArrayList<>();
+        while(endInd<intervals.length){
+            if(endInd==intervals.length-1 || start[endInd+1]>end[endInd]){
+                int[] addi = new int[]{start[startInd], end[endInd]};
+                arr.add(addi);
+                startInd = endInd+1;
+            }
+            endInd++;
+        }
+        return arr.toArray(new int[arr.size()][]);
+    }
+    
+}
