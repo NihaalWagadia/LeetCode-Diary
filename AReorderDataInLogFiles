@@ -1,0 +1,26 @@
+class Solution {
+    public String[] reorderLogFiles(String[] logs) {
+        Arrays.sort(logs, new LogComparator());
+        return logs;
+    }
+    
+    class LogComparator implements Comparator<String>{
+        @Override
+        public int compare(String ss1, String ss2){
+            String[] arr_s1 = ss1.split(" ");
+            String[] arr_s2 = ss2.split(" ");
+            char c1 = arr_s1[1].charAt(0);
+            char c2 = arr_s2[1].charAt(0);
+            if(Character.isDigit(c1) && Character.isDigit(c2)){ return 0;}
+            
+            if(!Character.isDigit(c1) && !Character.isDigit(c2)){
+                String sub1 = ss1.substring(arr_s1[0].length()+1);
+                String sub2 = ss2.substring(arr_s2[0].length()+1);
+                int value = sub1.compareTo(sub2);
+                return value!=0? value :arr_s1[0].compareTo(arr_s2[0]);
+            }
+            
+            return Character.isLetter(c1)?-1:10;
+        }
+    }
+}
