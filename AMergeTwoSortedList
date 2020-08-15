@@ -1,44 +1,33 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
-class Solution {
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        
-        ListNode helper = new ListNode(0);
-        ListNode output = helper;
-        //ListNode two = l2;
-        while(l1 != null && l2 != null){
-            if(l1.val <= l2.val){
-                output.next = l1;
-                l1 = l1.next;
-            }
-            else {
-                output.next = l2;
-                l2 = l2.next;
-            }
-            output = output.next;
+// Singly-linked lists are already defined with this interface:
+// class ListNode<T> {
+//   ListNode(T x) {
+//     value = x;
+//   }
+//   T value;
+//   ListNode<T> next;
+// }
+//
+ListNode<Integer> mergeTwoLinkedLists(ListNode<Integer> l1, ListNode<Integer> l2) {
+    if(l1==null)return l2;
+    if(l2==null)return l1;
+    ListNode<Integer>merged = new ListNode(0);
+    ListNode<Integer>output = merged;
+    while(l1!=null&&l2!=null){
+        if(l1.value<l2.value){
+            output.next=l1;
+            l1=l1.next;
         }
-        
-        while(l1!= null){
-            output.next = l1;
-            l1 =l1.next;
-            output = output.next;
+        else{
+            output.next=l2;
+            l2=l2.next;
         }
-        
-        
-        while(l2!= null){
-            output.next = l2;
-            l2 = l2.next;
-            output = output.next;
-        }
-       // return new ListNode(output.next);
-        return helper.next;
+        output=output.next;
     }
+    if(l1!=null){
+        output.next=l1;
+    }
+    if(l2!=null){
+        output.next=l2;
+    }
+    return merged.next;
 }
