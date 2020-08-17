@@ -1,0 +1,36 @@
+// Singly-linked lists are already defined with this interface:
+// class ListNode<T> {
+//   ListNode(T x) {
+//     value = x;
+//   }
+//   T value;
+//   ListNode<T> next;
+// }
+//
+ListNode<Integer> reverseNodesInKGroups(ListNode<Integer> l, int k) {
+    Stack<ListNode>st = new Stack<>();
+    Stack<ListNode>stRev = new Stack<>();
+
+    ListNode<Integer>dup =l;
+    
+    ListNode<Integer>curr = new ListNode(0);
+    ListNode<Integer>newNode = curr;
+    while(dup!=null){
+        st.push(dup);
+        dup =dup.next;
+        if(st.size()==k){
+            while(!st.isEmpty()){
+                newNode.next = new ListNode(st.pop().value);
+                newNode = newNode.next;
+            }
+        }
+    }
+    while(!st.isEmpty()){
+        stRev.push(st.pop());
+    }
+    while(!stRev.isEmpty()){
+        newNode.next = new ListNode(stRev.pop().value);
+        newNode = newNode.next;
+    }
+return curr.next;
+}
