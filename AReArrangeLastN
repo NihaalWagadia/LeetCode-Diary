@@ -1,0 +1,37 @@
+// Singly-linked lists are already defined with this interface:
+// class ListNode<T> {
+//   ListNode(T x) {
+//     value = x;
+//   }
+//   T value;
+//   ListNode<T> next;
+// }
+//
+ListNode<Integer> rearrangeLastN(ListNode<Integer> l, int n) {
+    if(n==0)return l;
+ListNode<Integer>travNode=l;
+ListNode<Integer>output=new ListNode(0);
+ListNode<Integer>curr= output;
+Queue<ListNode>queue=new LinkedList<>();
+while(travNode!=null){
+    queue.add(travNode);
+    travNode=travNode.next;
+}
+int x = queue.size()-n;
+while(queue.size()!=n){
+    queue.poll();
+}
+while(!queue.isEmpty()){
+    curr.next=new ListNode(queue.poll().value);
+    curr = curr.next;
+}
+
+while(x!=0){
+    curr.next=l;
+    curr=curr.next;
+    l=l.next;
+    x--;
+}
+curr.next =null;
+return output.next;
+}
