@@ -1,27 +1,29 @@
 class Solution {
     public int[] relativeSortArray(int[] arr1, int[] arr2) {
-        Map<Integer,Integer>hm = new HashMap<>();
-        for(int i=0; i<arr2.length; i++){
-            hm.put(i,arr2[i]);
+        if(arr1.length==0)return arr2;
+        if(arr2.length==0)return arr1;
+        Map<Integer, Integer>hm = new HashMap<>();
+        for(int i=0; i<arr1.length; i++){
+            hm.put(arr1[i],hm.getOrDefault(arr1[i],0)+1);
         }
-        int dup[] = new int[arr1.length];
-        int x =0;
+        int ind =0;
+        int arr[] = new int[arr1.length];
         for(int i=0; i<arr2.length; i++){
-            int match =hm.get(i);
-            for(int j=0; j<arr1.length; j++){
-                if(arr1[j]==match){
-                    dup[x]=match;
-                    x++;
-                }
+            int freq = hm.get(arr2[i]);
+            hm.put(arr2[i],-1);
+            while(freq!=0){
+                arr[ind]=arr2[i];
+                freq--;
+                ind++;
             }
         }
         Arrays.sort(arr1);
         for(int i=0; i<arr1.length; i++){
-          if(!hm.containsValue(arr1[i])){
-              dup[x]=arr1[i];
-              x++;
-          }  
+            if(hm.get(arr1[i])>0){
+                arr[ind]=arr1[i];
+                ind++;
+            }
         }
-        return dup;
+        return arr;
     }
 }
