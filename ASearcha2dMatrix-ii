@@ -1,25 +1,18 @@
 class Solution {
-    boolean search = true;
     public boolean searchMatrix(int[][] matrix, int target) {
-        if(matrix.length==0)return false;
-        dfs(matrix, 0, matrix[0].length-1, target);
-        return search;
-    }
-    
-    public void dfs(int[][] matrix, int i, int j, int target){
-        if(i<0 || j<0 || i>= matrix.length || j>= matrix[0].length){
-            search = false;
-            return;
+        if(matrix.length==0 )return false;
+        int i=0, j=matrix[0].length-1;
+        while(i>=0 && i<matrix.length && j>=0 && j<matrix[0].length){
+            if(matrix[i][j]==target){
+                    return true;
+                }
+                else if(target>matrix[i][j]){
+                    i++;
+                }
+                else if(target<matrix[i][j]){
+                    j--;
+            }
         }
-        if(target==matrix[i][j]){
-            search = true;
-            return;
-        }
-        else if(target>matrix[i][j]){
-            dfs(matrix, i+1, j, target);
-        }
-        else if(target<matrix[i][j]){
-            dfs(matrix, i, j-1, target);
-        }
+        return false;
     }
 }
