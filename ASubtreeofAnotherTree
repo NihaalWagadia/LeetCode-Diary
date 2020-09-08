@@ -13,6 +13,52 @@
  *     }
  * }
  */
+ 
+ /**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    String strS ="", strT="";
+    public boolean isSubtree(TreeNode s, TreeNode t) {
+        
+        strS = inorder(s, strS);
+        strT = inorder(t, strT);
+        return strS.contains(strT)?true:false;
+    }
+    
+    public String inorder(TreeNode root, String str){
+      
+        if(root==null){
+            str = str+"#";
+        }
+        else{
+            str = str+","+root.val;
+            str = inorder(root.left, str);
+            str = inorder(root.right, str);
+        }
+        return str;
+    }
+
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 class Solution {
     public boolean isSubtree(TreeNode s, TreeNode t) {
         String stringS = preorder(s);
@@ -46,3 +92,5 @@ class Solution {
         
     }
 }
+
+
