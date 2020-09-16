@@ -1,0 +1,38 @@
+class Solution {
+    public int numTriplets(int[] nums1, int[] nums2) {
+        Map<Long, Integer>hm1 = new HashMap<>();
+        Map<Long, Integer>hm2 = new HashMap<>();
+    
+        for(int i=0; i<nums1.length; i++){
+            long val = (long)nums1[i]*(long)nums1[i];
+            hm1.put(val, hm1.getOrDefault(val,0)+1);   
+        }
+        for(int i=0; i<nums2.length; i++){
+            long val = (long)nums2[i]*(long)nums2[i];
+            hm2.put(val, hm2.getOrDefault(val,0)+1);
+        }
+        
+        int count=0;
+        for(int i=0; i<nums1.length; i++){
+            for(int j=i+1; j<nums1.length; j++){
+                long curr = ((long)nums1[i]*(long)nums1[j]);
+                if(hm2.containsKey(curr)){
+                    count += hm2.get(curr);
+                }
+            }
+        }
+        
+
+        
+        
+        for(int i=0; i<nums2.length; i++){
+            for(int j=i+1; j<nums2.length; j++){
+                long curr = ((long)nums2[i]*(long)nums2[j]);
+                if(hm1.containsKey(curr)){
+                    count += hm1.get(curr);
+                }
+            }
+        }
+        return count;
+    }
+}
