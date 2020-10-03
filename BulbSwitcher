@@ -1,0 +1,13 @@
+class Solution {
+    public int minFlips(String target) {
+        char previous = '0';
+        int count =0;
+        for(char ch: target.toCharArray()){
+            if(ch!=previous){
+                previous=ch;
+                count++;
+            }
+        }
+        return count;
+    }
+}
