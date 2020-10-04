@@ -1,0 +1,42 @@
+class Solution {
+    public List<Integer> peopleIndexes(List<List<String>> favoriteCompanies) {
+        List<Integer>output =new ArrayList<>();
+        Map<Integer, List<String>>hm = new HashMap<>();
+        for(int i=0; i<favoriteCompanies.size(); i++){
+            List<String>list = favoriteCompanies.get(i);
+            Collections.sort(list);
+            hm.put(i, list);
+        }
+        
+        for (Map.Entry<Integer, List<String>> map: hm.entrySet()){
+            List<String>temp = map.getValue();
+            int key = map.getKey();
+            int size = temp.size();
+            int max=0;
+            for (Map.Entry<Integer, List<String>> iter: hm.entrySet()){
+               int count =0;
+                if(key==iter.getKey()){
+                   continue;
+               }
+                else{
+                    List<String>tempIter = iter.getValue();
+                    for(int i=0; i<temp.size(); i++){
+                        if(tempIter.contains(temp.get(i))){
+                            count++;
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                    if(count!=temp.size()){
+                        max++;
+                    }
+                }
+            }
+            if(max==hm.size()-1){
+                output.add(key);
+            }
+        }
+        return output;
+    }
+}
