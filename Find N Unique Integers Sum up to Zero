@@ -1,0 +1,26 @@
+class Solution {
+    public int[] sumZero(int n) {
+        int[] output = new int[n];
+        if(n==1)return output;
+        int odd = n/2-n+1;
+        int even = n/2-n;
+        for(int i=0; i<n; i++){
+            if(n%2==0){
+                if(even==0){
+                output[i]=((n/2)-(n))*(-1);    
+                }
+                else{
+                    output[i]=even;
+                }
+                even++;
+            }
+            else{
+                output[i]=odd;
+                odd++;
+            }
+            
+        }
+        return output;
+        
+    }
+}
