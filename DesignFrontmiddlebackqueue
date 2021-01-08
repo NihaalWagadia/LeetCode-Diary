@@ -1,0 +1,60 @@
+class FrontMiddleBackQueue {
+    LinkedList<Integer>list = new LinkedList<>();
+    int size = 0;
+
+    public FrontMiddleBackQueue() {
+        
+    }
+    
+    public void pushFront(int val) {
+        list.addFirst(val);
+        size++;
+    }
+    
+    public void pushMiddle(int val) {
+        list.add(size/2, val);
+        size++;
+    }
+    
+    public void pushBack(int val) {
+        list.addLast(val);
+        size++;
+    }
+    
+    public int popFront() {
+        if(size==0)return -1;
+        int popper = list.removeFirst();
+        size--;
+        return popper ;
+    }
+    
+    public int popMiddle() {
+        if(size==0)return -1;
+        if(size%2==0){
+            int delete = list.remove((size-1)/2);
+            size--;
+            return delete;
+        }
+        int delete = list.remove(size/2);
+        size--;
+        return delete;
+    }
+    
+    public int popBack() {
+        if(size==0)return -1;
+        int popper = list.removeLast();
+        size--;
+        return popper ;
+    }
+}
+
+/**
+ * Your FrontMiddleBackQueue object will be instantiated and called as such:
+ * FrontMiddleBackQueue obj = new FrontMiddleBackQueue();
+ * obj.pushFront(val);
+ * obj.pushMiddle(val);
+ * obj.pushBack(val);
+ * int param_4 = obj.popFront();
+ * int param_5 = obj.popMiddle();
+ * int param_6 = obj.popBack();
+ */
