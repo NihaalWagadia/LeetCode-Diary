@@ -1,0 +1,26 @@
+class Solution {
+    public String reformatNumber(String number) {
+        number = number.replaceAll("[^0-9]+","");
+        if(number.length()<4)return number;
+        String output = "";
+        int i=0;
+        while(number.length()>2){
+            if(number.length()==4){
+                output += number.substring(0,2)+"-";
+                
+                number = number.substring(2);
+            }
+            else if(number.length()==3){
+                output += number;
+                number = number.substring(number.length());
+                break;
+            }
+            else{
+                output += number.substring(0, 3)+"-";
+                
+                number = number.substring(3);
+            }
+        }
+        return output+number;
+    }
+}
